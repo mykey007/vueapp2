@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>VueApp</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- {{msg}} via moustache-->
+		<!-- now with vue attreibutes -->
+		<p v-html="msg"></p>
+		<!--<p v-text="user.name"></p>-->
+		<!-- <p><a v-bind:href="url">YooHoo</a></p> -->
+		<!-- do javascript expressions! -->
+		<!-- <h2>{{foo ? 'yes' : 'no'}}</h2> -->
+
+		<!-- print out the array -->
+		<ul>
+			<li v-for="(user, index) in users">
+			{{index}} - {{user.name}}
+			</li>
+		</ul>
+
+		<div v-for="(value, key, index) in user">
+			{{index}} - {{key}}: {{value}}
+		</div>
+
+		<div v-for="n in 10">{{n}}</div>
+
+		<div v-if="status">
+			And we're good to go
+		</div>
+	</div>
+	<script>
+		let app = new Vue({
+			el: '#app',
+			data: {
+				status: 1,
+				msg: '<h1>Hello World</h1>',
+				age: 99,
+				users: [
+					{name: 'Willie Sultan'},
+					{name: 'Chuck Berry'},
+					{name: 'Wilber Montgomery'}
+				],
+				user: {
+					name: "5ive", email: "5ive@gmail.com"
+				}
+			}
+		});
+	</script>
+</body>
+</html>
