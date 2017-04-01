@@ -7,6 +7,40 @@
 </head>
 <body>
 	<div id="app">
+		<div>
+			<input v-model="msg2" placeholder="Enter Message:" type="text" name="msg2">
+			{{msg2}}
+		</div>
+		<!-- 2way binding on simple input -->
+		<div>
+			<input type="checkbox" v-model="checked" name="">
+			<p>{{checked}}</p>
+		</div>
+
+		<!-- 2way binding on array of checkboxes -->
+		<div>
+			<label>Mike<input type="checkbox" value="Mike" v-model="checkedNames" name=""></label>
+			<label>Rchan<input type="checkbox" value="Rchan" v-model="checkedNames" name=""></label>
+			<label>Dink<input type="checkbox" value="Dink" v-model="checkedNames" name=""></label>
+			<p>CheckedNames: {{checkedNames}}</p>
+			
+		</div>
+
+		<!-- 2way binding on array of radio buttons -->
+		<div>
+			<label>Mike<input type="radio" value="One" v-model="radioPicks" name=""></label>
+			<label>Rchan<input type="radio" value="Two" v-model="radioPicks" name=""></label>
+			<label>Dink<input type="radio" value="Three" v-model="radioPicks" name=""></label>
+			<p>radioPicks: {{radioPicks}}</p>
+			
+		</div>
+
+		<div>
+			<select multiple="true" v-model="selected">
+				<option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
+			</select>
+			<p>Selected: {{selected}}</p>
+		</div>
 		<!-- {{msg}} via moustache-->
 		<!-- now with vue attreibutes -->
 		<p v-html="msg"></p>
@@ -38,6 +72,17 @@
 			data: {
 				status: 1,
 				msg: '<h1>Hello World</h1>',
+				msg2: '',
+				checked: 0,
+				checkedNames: [],
+				radioPicks: '',
+				selected: '',
+				options: [
+					{text: "one", value: "A"},
+					{text: "bird", value: "B"},
+					{text: "rchan", value: "R"},
+					{text: "dink", value: "D"}
+				],
 				age: 99,
 				users: [
 					{name: 'Willie Sultan'},
