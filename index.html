@@ -12,152 +12,14 @@
 			width: 200px;
 			font-size: 24px;
 		}
-		.bounce-enter-active {
-			animation: bounce-in: 0.5s;
-		}
-		.bounce-leave-active {
-			animation: bounce-out: 0.5s;
-		}
-		@keyframes bounce-in {
-			0% { transform: scale(0); }
-			50% {transform: scale(1.25);}
-			100% {transform: scale(1);}
-		}
-
-		@keyframes bounce-out {
-			0% { transform: scale(1); }
-			50% {transform: scale(1.25);}
-			100% {transform: scale(0);}
-		}
-
-
-		.fade-enter-active, .fade-leave-active {
-			transition: opacity 0.75s;
-		}
-		.fade-enter, .fade-leave-active {
-			opacity: 0;
-		}
-		/* Enter and leave animations can use different */
-		/* durations and timing functions.              */
-		.slide-fade-enter-active {
-		  transition: all .5s ease;
-		}
-		.slide-fade-leave-active {
-		  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-		}
-		.slide-fade-enter, .slide-fade-leave-to
-		/* .slide-fade-leave-active for <2.1.8 */ {
-		  transform: translateX(10px);
-		  opacity: 0;
-		}
 	</style>
 	<script src="https://unpkg.com/vue"></script>
 </head>
 <body>
 	<div id="app">
-	<br>
-	<br>
-	<!-- <button v-on:click="show = !show">Show this thing</button> -->
-	<!-- v-on:click is synonymous to: -->
-	<button @click="show = !show">Show this thing</button> 
-	<!-- <transition name="fade">
-		<h1 v-if="show">yippie tay yeah mutherfuckers</h1>
-	</transition> -->
-	  <transition name="bounce">
-	    <h1 v-if="show">koombaya</h1>
-	  </transition>
-	<br>
-	<br>
-	<!-- using filters -->
-	<p>{{msg3 | capitalize}}</p>
-	<p>{{4 | double}}</p>
-	<br>
-	<br>
-	<br />
-	<form v-on:submit="formSubmit">
-		<input type="text" v-model="msg3" placeholder="doo dee da" name="">
-		<input type="submit" value="send it" name="submit">
-	</form>
-	<br />
-	<br />
-	<div>
-		<input type="text" v-on:keyup="keypress" v-on:keypress.enter="keySubmit" name="keypress" class="keys">
-	</div>
-
-	<!-- event handling with a counter -->
-	<div>
-		<button v-on:click="counter += 1">Add 1</button>
-		<p>You clicked {{counter}} times. Stop it now.</p>
-	</div>
-
-	<!-- event that handles a function -->
-	<div>
-		<div>
-			<button v-on:click="greet('baseless accusations', $event)">Click Me</button>
-		</div>
-	</div>
-
-		<div>
-			<input v-model="msg2" placeholder="Enter Message:" type="text" name="msg2">
-			{{msg2}}
-		</div>
-		<!-- 2way binding on simple input -->
-		<div>
-			<input type="checkbox" v-model="checked" name="">
-			<p>{{checked}}</p>
-		</div>
-
-		<!-- 2way binding on array of checkboxes -->
-		<div>
-			<label>Mike<input type="checkbox" value="Mike" v-model="checkedNames" name=""></label>
-			<label>Rchan<input type="checkbox" value="Rchan" v-model="checkedNames" name=""></label>
-			<label>Dink<input type="checkbox" value="Dink" v-model="checkedNames" name=""></label>
-			<p>CheckedNames: {{checkedNames}}</p>
-			
-		</div>
-
-		<!-- 2way binding on array of radio buttons -->
-		<div>
-			<label>Mike<input type="radio" value="One" v-model="radioPicks" name=""></label>
-			<label>Rchan<input type="radio" value="Two" v-model="radioPicks" name=""></label>
-			<label>Dink<input type="radio" value="Three" v-model="radioPicks" name=""></label>
-			<p>radioPicks: {{radioPicks}}</p>
-			
-		</div>
-
-		<!-- <div>
-			<select multiple="true" v-model="selected">
-				<option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
-			</select>
-			<p>Selected: {{selected}}</p>
-		</div> -->
-
-
-
-		<!-- {{msg}} via moustache-->
-		<!-- now with vue attreibutes -->
-		<p v-html="msg"></p>
-		<!--<p v-text="user.name"></p>-->
-		<!-- <p><a v-bind:href="url">YooHoo</a></p> -->
-		<!-- do javascript expressions! -->
-		<!-- <h2>{{foo ? 'yes' : 'no'}}</h2> -->
-
-		<!-- print out the array -->
-		<ul>
-			<li v-for="(user, index) in users">
-			{{index}} - {{user.name}}
-			</li>
-		</ul>
-
-		<div v-for="(value, key, index) in user">
-			{{index}} - {{key}}: {{value}}
-		</div>
-
-		<div v-for="n in 10">{{n}}</div>
-
-		<div v-if="status">
-			And we're good to go
-		</div>
+		<br>
+		<br>
+		<h1>{{fullName}}</h1>
 	</div>
 	<script>
 		let app = new Vue({
@@ -190,16 +52,9 @@
 				}
 			},
 			data: {
-				show: true,
-				status: 1,
-				msg: '<h1>Hello World</h1>',
-				msg2: '',
-				msg3: 'ey man, hoy hoy',
-				counter: 0,
-				checked: 0,
-				checkedNames: [],
-				radioPicks: '',
-				selected: '',
+				fistName: 'SpongeBob',
+				lastName: 'SquarePants',
+				fullName: 'SpongeBob SquarePants',
 				options: [
 					{text: "one", value: "A"},
 					{text: "bird", value: "B"},
@@ -211,9 +66,14 @@
 					{name: 'Willie Sultan'},
 					{name: 'Chuck Berry'},
 					{name: 'Wilber Montgomery'}
-				],
-				user: {
-					name: "5ive", email: "5ive@gmail.com"
+				]
+			},
+			watch: {
+				firstName: function(value){
+					this.fullName = value + '' + this.lastName;
+				},
+				lastName: function(value){
+					this.fullName = this.firstName + '' + value;
 				}
 			}
 		});
