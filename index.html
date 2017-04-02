@@ -81,6 +81,7 @@
 						return this.firstName+" "+this.lastName;
 					},
 					set: function(value) {
+						//use let to mutate later
 						let names = value.split(" ");
 						this.firstName = names[0];
 						this.lastName = names[names.length -1];
