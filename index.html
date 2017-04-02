@@ -20,8 +20,9 @@
 		<br>
 		<br>
 		<h1>{{fullName}}</h1>
-		<!-- <input type="text" v-model="firstName" name="firstName">
-		<input type="text" v-model="lastName" name="lastName"> -->
+		<input type="text" v-model="firstName" name="">
+		<input type="text" v-model="lastName" name="">
+		<input type="text" v-model="fullName" name="">
 	</div>
 	<script>
 		let app = new Vue({
@@ -71,8 +72,19 @@
 				]
 			},
 			computed: {
-				fullName: function() {
-					return this.firstName+ " " +this.lastName;
+				// this function is not even looking for the fullName in the data array, only the pieces it needs to work in the dom
+				// fullName: function() {
+				// 	return this.firstName+ " " +this.lastName;
+				// }
+				fullName: {
+					get: function() {
+						return this.firstName+" "+this.lastName;
+					},
+					set: function(value) {
+						let names = value.split(" ");
+						this.firstName = names[0];
+						this.lastName = names[names.length -1];
+					}
 				}
 			}
 			// watch: {
