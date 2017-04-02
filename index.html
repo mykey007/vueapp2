@@ -5,8 +5,8 @@
 	<title>VueApp</title>
 	<style type="text/css">
 		h1 {
-			color: #fff;
-			background: dodgerblue;
+			color: #ECF0F1; /* clouds */
+			background: #34495E /* wet asphalt */;
 			padding: 10px;
 			text-align: center;
 			width: 200px;
@@ -20,6 +20,8 @@
 		<br>
 		<br>
 		<h1>{{fullName}}</h1>
+		<input type="text" v-model="firstName" name="firstName">
+		<input type="text" v-model="lastName" name="lastName">
 	</div>
 	<script>
 		let app = new Vue({
@@ -52,7 +54,7 @@
 				}
 			},
 			data: {
-				fistName: 'SpongeBob',
+				firstName: 'SpongeBob',
 				lastName: 'SquarePants',
 				fullName: 'SpongeBob SquarePants',
 				options: [
@@ -65,15 +67,15 @@
 				users: [
 					{name: 'Willie Sultan'},
 					{name: 'Chuck Berry'},
-					{name: 'Wilber Montgomery'}
+					{name: 'Wilbert Montgomery'}
 				]
 			},
 			watch: {
 				firstName: function(value){
-					this.fullName = value + '' + this.lastName;
+					this.fullName = value+ '' +this.lastName;
 				},
 				lastName: function(value){
-					this.fullName = this.firstName + '' + value;
+					this.fullName = this.firstName+ '' +value;
 				}
 			}
 		});
