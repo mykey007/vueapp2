@@ -20,8 +20,8 @@
 		<br>
 		<br>
 		<h1>{{fullName}}</h1>
-		<input type="text" v-model="firstName" name="firstName">
-		<input type="text" v-model="lastName" name="lastName">
+		<!-- <input type="text" v-model="firstName" name="firstName">
+		<input type="text" v-model="lastName" name="lastName"> -->
 	</div>
 	<script>
 		let app = new Vue({
@@ -54,9 +54,9 @@
 				}
 			},
 			data: {
-				firstName: 'SpongeBob',
+				firstName: 'CompuBob',
 				lastName: 'SquarePants',
-				fullName: 'SpongeBob SquarePants',
+				// fullName: 'ComputedBob SquarePants',
 				options: [
 					{text: "one", value: "A"},
 					{text: "bird", value: "B"},
@@ -70,14 +70,19 @@
 					{name: 'Wilbert Montgomery'}
 				]
 			},
-			watch: {
-				firstName: function(value){
-					this.fullName = value+ '' +this.lastName;
-				},
-				lastName: function(value){
-					this.fullName = this.firstName+ '' +value;
+			computed: {
+				fullName: function() {
+					return this.firstName+ " " +this.lastName;
 				}
 			}
+			// watch: {
+			// 	firstName: function(value){
+			// 		this.fullName = value+ '' +this.lastName;
+			// 	},
+			// 	lastName: function(value){
+			// 		this.fullName = this.firstName+ '' +value;
+			// 	}
+			// }
 		});
 	</script>
 </body>
