@@ -7,6 +7,7 @@
   </head>
   <body>
     <div id="app">
+      <hello msg="bubbleHouse"></hello>
       <hello></hello>
       <br />
       <simple-counter></simple-counter>
@@ -24,12 +25,30 @@
 
       var Hello = {
         name: 'hello',
-        template: '<h1>{{msg}}</h1>',
-        data() {
-          return {
-            msg: 'Hello There'
-          }
-        }
+        props: {
+        	msg: {
+        		type: String,
+        		default: 'night marchers' // will replace msg attr
+        	},
+        	msg2: {
+        		type: [Number, String],
+        		default: 666
+        	},
+        	msg3: {
+        		type: Object,
+        		default: function() {
+        			return {
+        				text: 'wavy gravy'
+        			}
+        		}
+        	},
+        	msg4: {
+        		default: function() {
+        			return 'I am a function';
+        		}
+        	}
+        },
+        template: '<h1>{{msg4}}</h1>'
       }
 
       let app = new Vue({
