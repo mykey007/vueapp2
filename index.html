@@ -1,102 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>VueApp</title>
-	<style type="text/css">
-		h1 {
-			color: #ECF0F1; /* clouds */
-			background: #34495E /* wet asphalt */;
-			padding: 10px;
-			text-align: center;
-			width: 200px;
-			font-size: 24px;
-		}
-	</style>
-	<script src="https://unpkg.com/vue"></script>
-</head>
-<body>
-	<div id="app">
-		<br>
-		<br>
-		<h1>{{fullName}}</h1>
-		<input type="text" v-model="firstName" name="">
-		<input type="text" v-model="lastName" name="">
-		<input type="text" v-model="fullName" name="">
-	</div>
-	<script>
-		let app = new Vue({
-			el: '#app',
-			filters: {
-				uppercase: function(value) {
-					return value.toUpperCase();
-				},
-				capitalize: function(value) {
-					if(!value) return;
-					value = value.toString();
-					return value.charAt(0).toUpperCase() + value.slice(1);
-				},
-				double: function(value) {
-					return value * 2;
-				}
-			},
-			methods: {
-				greet: function(greeting, event) {
-					console.log(event);
-				},
-				keypress: function(event) {
-					console.log(event.target.value);
-				},
-				keySubmit: function(event) {
-					console.log("Enter hit...");
-				},
-				formSubmit: function() {
-					alert("form's been sent, thank you much");
-				}
-			},
-			data: {
-				firstName: 'CompuBob',
-				lastName: 'SquarePants',
-				// fullName: 'ComputedBob SquarePants',
-				options: [
-					{text: "one", value: "A"},
-					{text: "bird", value: "B"},
-					{text: "rchan", value: "R"},
-					{text: "dink", value: "D"}
-				],
-				age: 99,
-				users: [
-					{name: 'Willie Sultan'},
-					{name: 'Chuck Berry'},
-					{name: 'Wilbert Montgomery'}
-				]
-			},
-			computed: {
-				// this function is not even looking for the fullName in the data array, only the pieces it needs to work in the dom
-				// fullName: function() {
-				// 	return this.firstName+ " " +this.lastName;
-				// }
-				fullName: {
-					get: function() {
-						return this.firstName+" "+this.lastName;
-					},
-					set: function(value) {
-						//use let to mutate later
-						let names = value.split(" ");
-						this.firstName = names[0];
-						this.lastName = names[names.length -1];
-					}
-				}
-			}
-			// watch: {
-			// 	firstName: function(value){
-			// 		this.fullName = value+ '' +this.lastName;
-			// 	},
-			// 	lastName: function(value){
-			// 		this.fullName = this.firstName+ '' +value;
-			// 	}
-			// }
-		});
-	</script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>VueApp</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <hello></hello>
+      <br />
+      <simple-counter></simple-counter>
+    </div>
+
+    <script>
+    Vue.component('simple-counter', {
+      template: '<button v-on:click="counter += 1">{{counter}}</button>',
+      data: function(){
+        return {
+          counter: 0
+        }
+      }
+    });
+
+      var Hello = {
+        name: 'hello',
+        template: '<h1>{{msg}}</h1>',
+        data() {
+          return {
+            msg: 'Hello There'
+          }
+        }
+      }
+
+      let app = new Vue({
+        el:'#app',
+        components: {
+          Hello
+        },
+        data:{
+          msg: 'Hello World!'
+        }
+      });
+
+    </script>
+  </body>
 </html>
